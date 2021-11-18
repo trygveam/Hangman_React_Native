@@ -4,8 +4,8 @@ import { StyleSheet, Text, View, Button } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import WelcomeScreen from "./App/screens/WelcomeScreen";
-import GameScreen from "./App/screens/GameScreen";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
+import GameScreen from "./app/screens/GameScreen";
 
 // function HomeScreen({ navigation }) {
 //   return (

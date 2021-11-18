@@ -28,7 +28,8 @@ function GameScreen(props) {
   const maxWrong = 7;
   const [wrongGuesses, setWrongGuesses] = useState(0);
   const [guess, setGuess] = useState("");
-  const guessed = new Set();
+  const guessedWords = new Set();
+  const [completedWord, setCompletedWord] = useState(" " * word.length);
 
   const handleOnPress = () => {
     checkIfCorrect(guess);
@@ -37,11 +38,17 @@ function GameScreen(props) {
   const checkIfCorrect = (g) => {
     console.log("letter" + isLetter(g));
     console.log("word includes " + word.includes(g));
-    console.log("guessed includes " + guessed.has(g));
-    // if (isLetter(g) && word.includes(g) && !word.includes(guessed)) {
-    // } else {
-    //   setWrongGuesses(wrongGuesses + 1);
-    // }
+    console.log("guessed includes " + guessedWords.has(g));
+    if (isLetter(g)) {
+      if (word.includes(g) && !guessedWords.has(g)) {
+        console.log("correct letter");
+      } else {
+        setWrongGuesses(wrongGuesses + 1);
+        if (wrongGuesses == 7) {
+          console.log("finished");
+        }
+      }
+    }
   };
 
   return (
