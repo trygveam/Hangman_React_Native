@@ -1,0 +1,25 @@
+{
+    "english":{
+        "titleGame":"Hangman Game",
+        "language":"english",
+        "information":"this is an information header",
+        "buttonInformation":"Guess",
+        "errorMessageAlreadyGuessed":"Already guessed this letter",
+        "guessed":"Guessed Letters",
+        "countWrong":"Number of mistakes: ",
+        "possibleInputs":"A-Z",
+        "modelButtonClose":"Hide Info"
+    
+    },
+    "norsk":{
+        "titleGame":"Hangman Spill",
+        "language":"norsk",
+        "information":"Dette er informasjon header",
+        "buttonInformation":"Gjett",
+        "errorMessageAlreadyGuessed":"Allerede gjettet denne bokstaven",
+        "guessed":"Gjettede bokstaver",
+        "countWrong":"Antall feil: ",
+        "possibleInputs":"A-Å",
+        "modelButtonClose":"Skjul Info"
+    }
+}
