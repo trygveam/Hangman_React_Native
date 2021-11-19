@@ -8,8 +8,10 @@
         "guessed":"Guessed Letters",
         "countWrong":"Number of mistakes: ",
         "possibleInputs":"A-Z",
-        "modelButtonClose":"Hide Info"
-    
+        "modelButtonClose":"Hide Info",
+        "won":"The Game is completed, you have won the game. Press button to restart",
+        "lost":"The Game is completed, you have lost the game. Press button to restart",
+        "restart":"Restart Game"
     },
     "norsk":{
         "titleGame":"Hangman Spill",
@@ -20,6 +22,9 @@
         "guessed":"Gjettede bokstaver",
         "countWrong":"Antall feil: ",
         "possibleInputs":"A-Å",
-        "modelButtonClose":"Skjul Info"
+        "modelButtonClose":"Skjul Info",
+        "won":"Spillet er ferdig, du har vunnet spillet. Trykk Gjenta for å start på nytt.",
+        "lost":"Spillet er ferdig, du har tapt spillet. Trykk Gjenta for å start på nytt.",
+        "restart":"Gjenta"
     }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Modal, Pressable, Text } from "react-native";
-
+import colors from "../config/colors";
+import AppText from "./AppText";
 function AppModal({
   modalVisible,
   setModalVisible,
@@ -19,12 +20,12 @@ function AppModal({
     >
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
-          <Text style={styles.modalText}>{modelInfo}</Text>
+          <AppText style={styles.modalText}>{modelInfo}</AppText>
           <Pressable
             style={[styles.button, styles.buttonClose]}
             onPress={() => setModalVisible(!modalVisible)}
           >
-            <Text style={styles.textStyle}>{modelButtonTitle}</Text>
+            <AppText style={styles.textStyle}>{modelButtonTitle}</AppText>
           </Pressable>
         </View>
       </View>
@@ -35,11 +36,11 @@ function AppModal({
 const styles = StyleSheet.create({
   modalView: {
     margin: 20,
-    backgroundColor: "white",
+    backgroundColor: colors.white,
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
-    shadowColor: "#000",
+    shadowColor: colors.red,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -53,15 +54,11 @@ const styles = StyleSheet.create({
     padding: 10,
     elevation: 2,
   },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    backgroundColor: colors.primary,
   },
   textStyle: {
     color: "white",
-    fontWeight: "bold",
     textAlign: "center",
   },
   modalText: {

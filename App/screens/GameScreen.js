@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { StyleSheet, Image, View, Picker } from "react-native";
+import { StyleSheet, Image, View } from "react-native";
 
 import style from "../config/styles";
 import colors from "../config/colors";
 import json from "../assets/json/language.json";
-
+import { Picker } from "@react-native-picker/picker";
 import AppText from "../components/AppText";
 import Screen from "../components/Screen";
 import { randomWord } from "../components/Words";
@@ -25,42 +25,63 @@ const images = [
 ];
 
 const word = randomWord();
+const wordArray = Array.from(word);
+const cwArray = Array(word.length).fill("-");
 
 function GameScreen(props) {
-  // new Array(...guessedWords).join("")
+  const [wordState, setWordState] = useState(word);
   const [language, setLanguage] = useState("english");
-  const maxWrong = 7;
-  const [wrongGuesses, setWrongGuesses] = useState(0);
-  const [guess, setGuess] = useState("");
-  const [completedWord, setCompletedWord] = useState(" " * word.length);
-  const [guessedWords, setGuessedWords] = useState(new Set());
-
   const [modalVisible, setModalVisible] = useState(true);
+  const [modalFinishVisible, setModalFinishVisible] = useState(false);
+  const [guess, setGuess] = useState("");
+  const [guessedLettersString, setGuessedLettersString] = useState("");
+  const [guessedCompleteString, setGuessedCompleteString] = useState(
+    "-".repeat(word.length)
+  );
+  const [wgCount, setWGCount] = useState(0);
+  const [guessedLetters, setGuessedLetters] = useState(new Set());
+  const [won, setWon] = useState("");
 
   const handleOnPress = () => {
     checkIfCorrect(guess);
   };
 
   function isLetter(str) {
-    return str.length === 1 && str.match(/[a-z]/i);
+    return str.length === 1 && str.match(/[a-å]/i);
   }
   const checkIfCorrect = (g) => {
-    //if (isLetter(g)) {
-    console.log(word);
-    guessedWords.add("c");
-    if (word.includes(g) && !guessedWords.has(g)) {
-      guessedWords.add(g);
+    console.log(wordArray);
+    console.log(cwArray);
+    if (wordState.includes(g) && !guessedLetters.has(g)) {
+      guessedLetters.add(g);
+      console.log(g);
+      console.log(wordArray);
+      console.log(wordArray.indexOf(g));
       console.log("correct letter");
-    } else if (!word.includes(g) && !guessedWords.has(g)) {
-      setWrongGuesses(wrongGuesses + 1);
-      guessedWords.add(g);
-      console.log("wrong guess, wrong guesses: " + wrongGuesses);
-      if (wrongGuesses === 7) {
-        console.log("finished");
+      for (let i = 0; i < wordArray.length; i++) {
+        if (wordArray[i] == g) {
+          cwArray[i] = g;
+        }
+      }
+      if (!cwArray.includes("-")) {
+        console.log("game won");
+        setWon(json[language].won);
+        setModalFinishVisible(true);
+      }
+    } else if (!wordState.includes(g) && !guessedLetters.has(g)) {
+      setWGCount(wgCount + 1);
+      guessedLetters.add(g);
+      console.log("wrong guess, wrong guesses: " + wgCount);
+      if (wgCount == 6) {
+        console.log("game lost");
+        setWon(json[language].lost);
+        setModalFinishVisible(true);
       }
     }
-    console.log(new Array(...guessedWords).join(""));
-    //}
+    console.log(wordArray);
+    console.log(cwArray);
+    setGuessedLettersString([...guessedLetters].join(" "));
+    setGuessedCompleteString([...cwArray].join(" "));
   };
 
   return (
@@ -70,6 +91,12 @@ function GameScreen(props) {
         setModalVisible={setModalVisible}
         modelInfo={json[language].information}
         modelButtonTitle={json[language].modelButtonClose}
+      />
+      <AppModal
+        modalVisible={modalFinishVisible}
+        setModalVisible={setModalFinishVisible}
+        modelInfo={won}
+        modelButtonTitle={json[language].restart}
       />
       <View style={styles.headerContainer}>
         <AppText>{json[language].titleGame}</AppText>
@@ -86,17 +113,23 @@ function GameScreen(props) {
         </View>
       </View>
       <View style={styles.outputContainer}>
-        <AppText>{json[language].guessed}</AppText>
-        <AppText>{"wrong : " + wrongGuesses}</AppText>
+        <AppText>
+          {json[language].guessed + " : " + guessedLettersString}
+        </AppText>
+        <AppText>{json[language].countWrong + wgCount}</AppText>
       </View>
-      <AppText>{word}</AppText>
-      <Image style={styles.image} source={images[wrongGuesses]}></Image>
+      <AppText>{wordState}</AppText>
+      <Image style={styles.image} source={images[wgCount]}></Image>
+      <AppText style={styles.wordComplete}>{guessedCompleteString}</AppText>
       <AppTextInput
         placeholder={json[language].possibleInputs}
         icon="add"
         onChangeText={(text) => setGuess(text)}
       />
-      <AppButton title="Click" onPress={() => handleOnPress()} />
+      <AppButton
+        title={json[language].buttonInformation}
+        onPress={() => handleOnPress()}
+      />
     </Screen>
   );
 }
@@ -112,7 +145,6 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     width: "100%",
-    backgroundColor: "dodgerblue",
     flexDirection: "row",
   },
   image: {
@@ -121,8 +153,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   outputContainer: {
-    flexDirection: "row",
-    backgroundColor: "orange",
+    flexDirection: "column",
     width: "100%",
     height: 100,
   },
@@ -131,6 +162,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "flex-end",
     justifyContent: "flex-end",
+  },
+  wordComplete: {
+    fontSize: 20,
+    fontWeight: "bold",
+    alignContent: "center",
   },
 });
 export default GameScreen;
