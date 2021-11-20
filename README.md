@@ -1,6 +1,6 @@
 # Hangman_React_Native
 
-Project in INFT2501, First time touching react native.
+Project in INFT2501
 
 ## How to run this project
 Make sure you have the latest LST version or current version of Node.js installed on your device
