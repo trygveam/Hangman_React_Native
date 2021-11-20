@@ -54,36 +54,25 @@ function GameScreen(props) {
 
   const checkIfCorrect = (g) => {
     if (isLetter(g)) {
-      console.log(wordArray);
-      console.log(cwArray);
       if (wordState.includes(g) && !guessedLetters.has(g)) {
         guessedLetters.add(g);
-        console.log(g);
-        console.log(wordArray);
-        console.log(wordArray.indexOf(g));
-        console.log("correct letter");
         for (let i = 0; i < wordArray.length; i++) {
           if (wordArray[i] == g) {
             cwArray[i] = g;
           }
         }
         if (!cwArray.includes("-")) {
-          console.log("game won");
           setWon(json[language].won);
           setModalFinishVisible(true);
         }
       } else if (!wordState.includes(g) && !guessedLetters.has(g)) {
         setWGCount(wgCount + 1);
         guessedLetters.add(g);
-        console.log("wrong guess, wrong guesses: " + wgCount);
         if (wgCount == 6) {
-          console.log("game lost");
           setWon(json[language].lost);
           setModalFinishVisible(true);
         }
       }
-      console.log(wordArray);
-      console.log(cwArray);
       setGuessedLettersString([...guessedLetters].join(" "));
       setGuessedCompleteString([...cwArray].join(" "));
     } else {
