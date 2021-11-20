@@ -21,7 +21,7 @@ npm start
 ```
 This wil then open up a browser windows, where you could choose between running the applicaton on IOS, Android, Web or you smartPhone (requires installation of Expo)
 ## Version Used under Testing
-Node.js  16.13.0
-Visual Studio  1.62.3
-Android Studio  2020.3.1 Patch 3
+Node.js  16.13.0</br>
+Visual Studio  1.62.3</br>
+Android Studio  2020.3.1 Patch 3</br>
   -Emulator Pixel 4
