@@ -2,7 +2,7 @@
     "english":{
         "titleGame":"Hangman Game",
         "language":"english",
-        "information":"this is an information header",
+        "information":"This is the rules in Hangman. You are given a random word of a given length. You are allowed to guess one letter at the time. If u guess wrong, a person wil appear in the galge. You can have 6 letters wrong before the person is hung.",
         "buttonInformation":"Guess",
         "errorMessageAlreadyGuessed":"Already guessed this letter",
         "guessed":"Guessed Letters",
@@ -11,12 +11,13 @@
         "modelButtonClose":"Hide Info",
         "won":"The Game is completed, you have won the game. Press button to restart",
         "lost":"The Game is completed, you have lost the game. Press button to restart",
-        "restart":"Restart Game"
+        "restart":"Restart Game",
+        "notLetterText":"The input cant be numbers or empty, needs to be one letter."
     },
     "norsk":{
         "titleGame":"Hangman Spill",
         "language":"norsk",
-        "information":"Dette er informasjon header",
+        "information":"Dette er reglene i Hangman. Du får et tilfeldig trekt ord med en gitt lengde som er like langt som antall streker vist på skjermen. Du kan gjette en bokstav av gangen, tipper du feil vil dette vises med at kroppsdel på en person vil komme fram på galgen. Tipper du feil 6 ganger vil hele personen komme fram å bli hengt, spillet er da over.",
         "buttonInformation":"Gjett",
         "errorMessageAlreadyGuessed":"Allerede gjettet denne bokstaven",
         "guessed":"Gjettede bokstaver",
@@ -25,6 +26,7 @@
         "modelButtonClose":"Skjul Info",
         "won":"Spillet er ferdig, du har vunnet spillet. Trykk Gjenta for å start på nytt.",
         "lost":"Spillet er ferdig, du har tapt spillet. Trykk Gjenta for å start på nytt.",
-        "restart":"Gjenta"
+        "restart":"Gjenta",
+        "notLetterText":"Følgende innsetting kan ikke være nummer eller tom, må være en bokstav."
     }
 }

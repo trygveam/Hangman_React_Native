@@ -7,6 +7,7 @@ function AppModal({
   setModalVisible,
   modelInfo,
   modelButtonTitle,
+  onPress,
 }) {
   return (
     <Modal
@@ -23,7 +24,7 @@ function AppModal({
           <AppText style={styles.modalText}>{modelInfo}</AppText>
           <Pressable
             style={[styles.button, styles.buttonClose]}
-            onPress={() => setModalVisible(!modalVisible)}
+            onPress={onPress}
           >
             <AppText style={styles.textStyle}>{modelButtonTitle}</AppText>
           </Pressable>
